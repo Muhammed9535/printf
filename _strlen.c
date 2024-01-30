@@ -1,17 +1,23 @@
 #include "main.h"
 /**
+<<<<<<< HEAD
   * _strlen: lent of string
-  * @s: string to check
+  * @str: string to check
   * Return: length of string
   */
-int _strlen(char *s)
+int _strlen(char *str)
 {
-	int x;
+	int i;
 
-	x = 0;
-	while (s[x] != '\0')
-	{
-		x++;
-	}	
-	return (x);
+	for (i = 0; str[i] != '\0'; i++)
+		return (i);
+}
+
+
+int _strlenc(cons char *str)
+{
+	int i;
+
+	fir (i = 0; str[i] != '\0'; i++)
+		return (i);
 }
