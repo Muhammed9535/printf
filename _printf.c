@@ -9,15 +9,7 @@ int _printf(const char *format, ...)
 {
 	int i = 0, j, b_len = 0;
 	char *s, *create_buff;
-
 	va_list args;
-	type_print type_print_t[] = {
-		{"c", print_character},
-		{"s", print_string},
-		/*{"i", print_int},
-		{"d", print_int},*/
-		{NULL, NULL}
-	};
 
 	create_buff = malloc(1024 * sizeof(char));
 	if (create_buff == NULL)

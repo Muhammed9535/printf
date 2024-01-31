@@ -12,9 +12,18 @@
 typedef struct print_type
 {
 	char *symbol;
-	char *(*f)(va_list args);
+	int *(*f)(va_list args);
 }
 type_print;
+
+
+type_print type_print_t[] = {
+	{"c", print_character},
+	{"s", print_string},
+	/*{"i", print_int},
+	{"d", print_int},*/
+	{NULL, NULL}
+};
 
 int _strlen(char *s);
 int _printf(const char *format, ...);

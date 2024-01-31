@@ -4,15 +4,26 @@
   * @args: argument
   * Return: number of byte
   */
-char *print_string(va_list args)
+int *print_string(va_list args)
 {
-	char *str;
+	char *s;
+	int i, len;
 
-	str = va_arg(args, char *);
-	if (str == NULL)
+	s = va_arg(args, char *);
+	if (s == NULL)
 	{
-		return (str = "(null)");
+		s = "(null)";
+		len = _srtlen(s);
+		for (i = 0; i < len; i++)
+			_putchar(s[i]);
+		return (len);
+	}
+	else
+	{
+		len = _strlen(s);
+		for (i = 0; i < len; i++)
+			_putchar(s[i]);
+		return (len);
 	}
 
-	return (str);
 }
