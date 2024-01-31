@@ -1,7 +1,8 @@
 #include "main.h"
 /**
- *
- *
+ * print_integer - print integer value
+ * @args: argument
+ * Return: (1);
  */
 
 int print_integer(va_list args)
@@ -43,9 +44,9 @@ int print_integer(va_list args)
 }
 
 /**
- *
- *
- *
+ * print_decimal - print decimal value
+ * @arg: argument
+ * Return: (1)
  */
 
 int print_decimal(va_list args)
@@ -84,4 +85,3 @@ int print_decimal(va_list args)
 	_putchar(last + '0');
 
 	return (i);
-}

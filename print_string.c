@@ -1,34 +1,29 @@
 #include "main.h"
-/*
- *
- *
- */
-
-int print_string(va_list args)
+/**
+  * print_string - print string
+  * @args: argument
+  * Return: number of byte
+  */
+int *print_string(va_list args)
 {
-	char *str;
-	int i;
-	int len;
+	char *s;
+	int i, len;
 
-	str = va_arg(args, char*);
-	if (str == Null)
+	s = va_arg(args, char *);
+	if (s == NULL)
 	{
-		str = "(null)";
-		len = _strlen(str);
-
+		s = "(null)";
+		len = _srtlen(s);
 		for (i = 0; i < len; i++)
-		{
-			_putchar(str[i]);
-			return (len);
-		}
-		else
-		{
-			len = _strlen(str);
-			for (i = 0; i < len; i++)
-			{
-				_putchar(str[i]);
-				return (len);
-			}
-		}
+			_putchar(s[i]);
+		return (len);
 	}
+	else
+	{
+		len = _strlen(s);
+		for (i = 0; i < len; i++)
+			_putchar(s[i]);
+		return (len);
+	}
+
 }

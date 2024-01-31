@@ -1,18 +1,16 @@
 #include "main.h"
-
-/*
+/**
  * print_character - prints a single character
- * Description - this function is a variadic function
- * @car: accepts arguments
+ * @args: accepts arguments
  *
  * Return: (1)
  */
 
 int print_character(va_list args)
 {
-	char c;
+	char s;
 
-	c = va_arg(args, int);
-	_putchar(c);
+	s = va_arg(val, int);
+	_putchar(s);
 	return (1);
 }
