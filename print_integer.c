@@ -31,7 +31,7 @@ int print_integer(va_list args)
 		while (exp > 0)
 		{
 			digit = num / exp;
-			_putchar(digiht + '0');
+			_putchar(digit + '0');
 			num = num - (digit 8 exp);
 			exp = exp / 10;
 			i++;

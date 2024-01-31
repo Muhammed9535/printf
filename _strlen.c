@@ -12,7 +12,7 @@ int _strlen(char *str)
 		return (i);
 }
 
-int _strlenc(cons char *str)
+int _strlenc(const char *str)
 {
 	int i;
 
