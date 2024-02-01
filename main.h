@@ -40,7 +40,7 @@ int _strlen(char *s);
 int rev_string(char *s);
 int print_37(void);
 int print_character(va_list args);
-int *print_string(va_list args);
+int print_string(va_list args);
 int _putchar(char c);
 int _printf(const char *format, ...);
 #endif
