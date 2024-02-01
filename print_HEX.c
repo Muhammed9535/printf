@@ -2,7 +2,7 @@
 
 /**
  * print_HEX - prints an hexgecimal number.
- * @val: arguments.
+ * @args: arguments.
  * Return: counter.
  */
 int print_HEX(va_list args)

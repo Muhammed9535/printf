@@ -2,15 +2,15 @@
 
 /**
  * print_oct - prints an octal number.
- * @val: arguments.
+ * @args: arguments.
  * Return: counter.
  */
-int print_oct(va_list val)
+int print_oct(va_list args)
 {
 	int i;
 	int *array;
 	int counter = 0;
-	unsigned int num = va_arg(val, unsigned int);
+	unsigned int num = va_arg(args, unsigned int);
 	unsigned int tem = num;
 
 	while (num / 8 != 0)

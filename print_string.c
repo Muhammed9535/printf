@@ -1,6 +1,6 @@
 #include "main.h"
 /**
-  * print_string - print string
+  * *print_string - print string
   * @args: argument
   * Return: number of byte
   */
