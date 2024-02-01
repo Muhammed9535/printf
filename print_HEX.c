@@ -1,16 +1,16 @@
-#include <main.h>
+#include "main.h"
 
 /**
  * print_HEX - prints an hexgecimal number.
  * @val: arguments.
  * Return: counter.
  */
-int print_HEX(va_list val)
+int print_HEX(va_list args)
 {
 	int i;
 	int *array;
 	int counter = 0;
-	unsigned int num = va_arg(val, unsigned int);
+	unsigned int num = va_arg(args, unsigned int);
 	unsigned int tem = num;
 
 	while (num / 16 != 0)

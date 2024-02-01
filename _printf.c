@@ -1,47 +1,45 @@
 #include "main.h"
 /**
-  * _printf - a function that produces output according to a format
-  * @format :  is a character string.
-  * @... : variable argument
-  * Return: integer
-  */
-int _printf(const char *format, ...)
+ * _printf - is a function that selects the correct function to print.
+ * @format: identifier to look for.
+ * Return: the length of the string.
+ */
+int _printf(const char * const format, ...)
 {
-	int i = 0, j, b_len = 0;
-	char *s, *create_buff;
+	convert p[] = {
+		{"%s", print_s}, {"%c", print_c},
+		{"%%", print_37},
+		{"%i", print_i}, {"%d", print_d}, {"%r", print_revs},
+		{"%R", print_rot13}, {"%b", print_bin},
+		{"%u", print_unsigned},
+		{"%o", print_oct}, {"%x", print_hex}, {"%X", print_HEX},
+		{"%S", print_exc_string}, {"%p", print_pointer}
+	};
+
 	va_list args;
+	int i = 0, j, length = 0;
 
-	create_buff = malloc(1024 * sizeof(char));
-	if (create_buff == NULL)
-	{
-		free(create_buff);
-		return (-1);
-	}
 	va_start(args, format);
-	if (format == NULL)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-
+Here:
 	while (format[i] != '\0')
 	{
-		if (format[i] != '%')
+		j = 13;
+		while (j >= 0)
 		{
-			create_buff[b_len] = format[i];
-		}
-		else if (format[i] == '%')
-		{
-			for (j =  0; type_print_t[j].f != NULL; j++)
+			if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
 			{
-				if (format[i + 1] == *(type_print_t[j].symbol))
-				{
-					s = type_print_t[j].f(args);
-					if (s == NULL)
-						return (-1);
-				}
+				length += p[j].function(args);
+				i = i + 2;
+				goto Here;
 			}
+			j--;
 		}
-		write(1, create_buff, b_len);
-		b_len++;
+		_putchar(format[i]);
+		length++;
+		i++;
 	}
 	va_end(args);
-	return (b_len);
+	return (length);
 }

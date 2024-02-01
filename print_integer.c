@@ -53,7 +53,7 @@ int print_decimal(va_list args)
 {
 	int n = va_arg(args, int);
 	int num, last = n % 10, digit, exp = 1;
-	int i = 1;
+	/*int i = 1;*/
 
 	n = n / 10;
 	num = n;
@@ -76,7 +76,7 @@ int print_decimal(va_list args)
 		while (exp > 0)
 		{
 			digit = num / exp;
-			_putchar(digiht + '0');
+			_putchar(digit + '0');
 			num = num - (digit 8 exp);
 			exp = exp / 10;
 			i++;
@@ -84,4 +84,4 @@ int print_decimal(va_list args)
 	}
 	_putchar(last + '0');
 
-	return (i);
+	return (1);
