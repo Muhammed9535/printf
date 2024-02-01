@@ -23,7 +23,7 @@ int print_integer(va_list args)
 	}
 	if (num > 0)
 	{
-		while (num/10 != 0)
+		while (num / 10 != 0)
 		{
 			exp = exp * 10;
 			num = num / 10;
@@ -45,7 +45,7 @@ int print_integer(va_list args)
 
 /**
  * print_decimal - print decimal value
- * @arg: argument
+ * @args: argument
  * Return: (1)
  */
 
@@ -67,7 +67,7 @@ int print_decimal(va_list args)
 	}
 	if (num > 0)
 	{
-		while (num/10 != 0)
+		while (num / 10 != 0)
 		{
 			exp = exp * 10;
 			num = num / 10;

@@ -1,10 +1,10 @@
 #include "main.h"
 /**
-  * *print_string - print string
+  * print_string - print string
   * @args: argument
   * Return: number of byte
   */
-int *print_string(va_list args)
+int print_string(va_list args)
 {
 	char *s;
 	int i, len;
