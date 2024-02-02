@@ -1,5 +1,28 @@
 #include "main.h"
 /**
+ * hex_print - prints an hexgecimal number.
+ * @c: characters.
+ * Return: counter.
+ */
+static int hex_print(char c)
+{
+        int count;
+        char diff = 'A' - ':';
+        char d[2];
+
+        d[0] = c / 16;
+        d[1] = c % 16;
+        for (count = 0; count < 2; count++)
+        {
+                if (d[count] >= 10)
+                        _putchar('0' + diff + d[count]);
+                else
+                        _putchar('0' + d[count]);
+        }
+        return (count);
+}
+
+/**
  * print_exc_string - print exclusuives string.
  * @args: parameter.
  * Return: integer.
@@ -7,34 +30,26 @@
 
 int print_exc_string(va_list args)
 {
-	char *s;
-	int i, length = 0;
-	int value;
+	unsigned int i;
+	int count = 0;
+	char *str = va_arg(args, char *);
 
-	s = va_arg(args, char *);
-	if (s == NULL)
-		s = "(null)";
-	for (i = 0; s[i] != '\0'; i++)
+	if (str == NULL)
+		str = "(null)";
+	for (i = 0; str[i]; i++)
 	{
-		if (s[i] < 32 || s[i] >= 127)
+		if (str[i] < 32 || str[i] >= 127)
 		{
 			_putchar('\\');
 			_putchar('x');
-			length = length + 2;
-			value = s[i];
-			if (value < 16)
-			{
-				_putchar('0');
-				length++;
-			}
-			length = length + print_HEX_extra(value);
+			count += 2;
+			count += hex_print(str[i]);
 		}
 		else
 		{
-			_putchar(s[i]);
-			length++;
+			_putchar(str[i]);
+			count++;
 		}
 	}
-	return (length);
+	return (count);
 }
-

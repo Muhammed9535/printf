@@ -1,37 +1,66 @@
 #include "main.h"
 
 /**
- * print_hex - prints an hexgecimal number.
- * @args: arguments.
- * Return: counter.
+ * print_hex - prints an unsigned int in hexidecimal form
+ * @n: unsigned int to print
+ * @c: flag to determine case of printing (0 = lower, 1 = upper)
+ *
+ * Return: number of digits printed
  */
-int print_hex(va_list args)
+int print_hex(unsigned int n, unsigned int c)
 {
-	int i;
-	int *array;
-	int counter = 0;
-	unsigned int num = va_arg(args, unsigned int);
-	unsigned int tem = num;
+	unsigned int a[8];
+	unsigned int i, m, sum;
+	char diff;
+	int count;
 
-	while (num / 16 != 0)
+	m = 268435456; /* (16 ^ 7) */
+	if (c)
+		diff = 'A' - ':';
+	else
+		diff = 'a' - ':';
+	a[0] = n / m;
+	for (i = 1; i < 8; i++)
 	{
-		num /= 16;
-		counter++;
+		m /= 16;
+		a[i] = (n / m) % 16;
 	}
-	counter++;
-	array = malloc(counter * sizeof(int));
-
-	for (i = 0; i < counter; i++)
+	for (i = 0, sum = 0, count = 0; i < 8; i++)
 	{
-		array[i] = tem % 16;
-		tem /= 16;
+		sum += a[i];
+		if (sum || i == 7)
+		{
+			if (a[i] < 10)
+				_putchar('0' + a[i]);
+			else
+				_putchar('0' + diff + a[i]);
+			count++;
+		}
 	}
-	for (i = counter - 1; i >= 0; i--)
-	{
-		if (array[i] > 9)
-			array[i] = array[i] + 39;
-		_putchar(array[i] + '0');
-	}
-	free(array);
-	return (counter);
+	return (count);
 }
+
+/**
+ * _print_hex_lower - takes an unsigned int and prints
+ * it in lowercase hex notation
+ * @args: arguments
+ *
+ * Return: number of digits printed
+ */
+int _print_hex_lower(va_list args)
+{
+	return (print_hex(va_arg(args, unsigned int), 0));
+}
+
+/**
+ * _print_hex_upper - takes an unsigned int and prints it in
+ * uppercase hex notation
+ * @args: arguments
+ *
+ * Return: number of digits printed
+ */
+int _print_hex_upper(va_list args)
+{
+	return (print_hex(va_arg(args, unsigned int), 1));
+}
+

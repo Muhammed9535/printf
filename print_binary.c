@@ -10,28 +10,26 @@
 
 int print_binary(va_list args)
 {
-	int i, a = 1, b;
-	int flag = 0;
-	int count = 0;
-	unsigned int num = va_arg(args, unsigned int);
-	unsigned int p;
+	unsigned int n, m, i, sum;
+	unsigned int a[32];
+	int count;
 
-	for (i = 0; i < 32; i++)
+	n = va_arg(args, unsigned int);
+	m = 2147483648; /* (2 ^ 31) */
+	a[0] = n / m;
+	for (i = 1; i < 32; i++)
 	{
-		p = ((a << (32 - i)) & num);
-		if (p >> (31 - i))
-			flag = 1;
-		if (flag)
+		m /= 2;
+		a[i] = (n / m) % 2;
+	}
+	for (i = 0, sum = 0, count = 0; i < 32; i++)
+	{
+		sum += a[i];
+		if (sum || i == 31)
 		{
-			b = p >> (31 - i);
-			putchar(b + 48);
+			_putchar('0' + a[i]);
 			count++;
 		}
-	}
-	if (count == 0)
-	{
-		count++;
-		_putchar('0');
 	}
 	return (count);
 }

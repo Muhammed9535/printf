@@ -2,87 +2,79 @@
 /**
  * print_integer - print integer value
  * @args: argument
- * Return: (1);
+ * Return: (count);
  */
 
 int print_integer(va_list args)
 {
-	int n = va_arg(args, int);
-	int num, last = n % 10, digit, exp = 1;
-	int i = 1;
+	int a[10];
+	int j, m, n, sum, count;
 
-	n = n / 10;
-	num = n;
-
-	if (last < 0)
+	n = va_arg(args, int);
+	count = 0;
+	m = 1000000000;
+	a[0] = n / m;
+	for (j = 1; j < 10; j++)
+	{
+		m /= 10;
+		a[j] = (n / m) % 10;
+	}
+	if (n < 0)
 	{
 		_putchar('-');
-		num = -n;
-		last = -last;
-		i++;
+		count++;
+		for (j = 0; j < 10; j++)
+			a[j] *= -1;
 	}
-	if (num > 0)
+	for (j = 0, sum = 0; j < 10; j++)
 	{
-		while (num / 10 != 0)
+		sum += a[j];
+		if (sum != 0 || j == 9)
 		{
-			exp = exp * 10;
-			num = num / 10;
-		}
-		num = n;
-		while (exp > 0)
-		{
-			digit = num / exp;
-			_putchar(digit + '0');
-			num = num - (digit * exp);
-			exp = exp / 10;
-			i++;
+			_putchar('0' + a[j]);
+			count++;
 		}
 	}
-	_putchar(last + '0');
-
-	return (i);
+	return (count);
 }
+
 
 /**
  * print_decimal - print decimal value
  * @args: argument
- * Return: (1)
+ * Return: (count)
  */
 
 int print_decimal(va_list args)
 {
-	int n = va_arg(args, int);
-	int num, last = n % 10, digit, exp = 1;
-	int i = 1;
+	int a[10];
+	int j, m, n, sum, count;
 
-	n = n / 10;
-	num = n;
-
-	if (last < 0)
+	n = va_arg(args, int);
+	count = 0;
+	m = 1000000000;
+	a[0] = n / m;
+	for (j = 1; j < 10; j++)
+	{
+		m /= 10;
+		a[j] = (n / m) % 10;
+	}
+	if (n < 0)
 	{
 		_putchar('-');
-		num = -n;
-		last = -last;
-		i++;
+		count++;
+		for (j = 0; j < 10; j++)
+			a[j] *= -1;
 	}
-	if (num > 0)
+	for (j = 0, sum = 0; j < 10; j++)
 	{
-		while (num / 10 != 0)
+		sum += a[j];
+		if (sum != 0 || j == 9)
 		{
-			exp = exp * 10;
-			num = num / 10;
-		}
-		num = n;
-		while (exp > 0)
-		{
-			digit = num / exp;
-			_putchar(digit + '0');
-			num = num - (digit * exp);
-			exp = exp / 10;
-			i++;
+			_putchar('0' + a[j]);
+			count++;
 		}
 	}
-	_putchar(last + '0');
 
-	return (1);
+	return (count);
 }

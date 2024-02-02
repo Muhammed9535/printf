@@ -1,4 +1,22 @@
 #include "main.h"
+/**
+ * _pow - calculates an exponent
+ * @base: base of exponent
+ * @exponent: exponent of number
+ *
+ * Return: base ^ exponent
+ */
+static unsigned long _pow(unsigned int base, unsigned int exponent)
+{
+	unsigned int i;
+	unsigned long ans = base;
+
+	for (i = 1; i < exponent; i++)
+	{
+		ans *= base;
+	}
+	return (ans);
+}
 
 /**
  * print_pointer - prints an hexgecimal number.
@@ -7,25 +25,43 @@
  */
 int print_pointer(va_list args)
 {
-	void *p;
-	char *s = "(nil)";
-	long int x;
-	int y;
-	int i;
+	int count = 0;
+	unsigned int a[16];
+	unsigned int i, sum;
+	unsigned long n, m;
+	char *str = "(nil)";
 
-	p = va_arg(args, void*);
-	if (p == NULL)
+	n = va_arg(args, unsigned long);
+	if (n == 0)
 	{
-		for (i = 0; s[i] != '\0'; i++)
+		for (i = 0; str[i]; i++)
 		{
-			_putchar(s[i]);
+			_putchar(str[i]);
+			count++;
 		}
-		return (i);
+		return (count);
 	}
-
-	x = (unsigned long int)p;
 	_putchar('0');
 	_putchar('x');
-	y = print_hex_extra(x);
-	return (y + 2);
+	count = 2;
+	m = _pow(16, 15); /* 16 ^ 15 */
+	a[0] = n / m;
+	for (i = 1; i < 16; i++)
+	{
+		m /= 16;
+		a[i] = (n / m) % 16;
+	}
+	for (i = 0, sum = 0; i < 16; i++)
+	{
+		sum += a[i];
+		if (sum || i == 15)
+		{
+			if (a[i] < 10)
+				_putchar('0' + a[i]);
+			else
+				_putchar('0' + ('a' - ':') + a[i]);
+			count++;
+		}
+	}
+	return (count);
 }
