@@ -6,39 +6,26 @@
  */
 int print_unsigned(va_list args)
 {
-	unsigned int n = va_arg(args, unsigned int);
-	int num, last = n % 10, digit, exp = 1;
-	int  i = 1;
+	unsigned int a[10];
+	unsigned int i, m, n, sum;
+	int count;
 
-	n = n / 10;
-	num = n;
-
-	if (last < 0)
+	n = va_arg(args, unsigned int);
+	m = 1000000000; /* (10 ^ 9) */
+	a[0] = n / m;
+	for (i = 1; i < 10; i++)
 	{
-		_putchar('-');
-		num = -num;
-		n = -n;
-		last = -last;
-		i++;
+		m /= 10;
+		a[i] = (n / m) % 10;
 	}
-	if (num > 0)
+	for (i = 0, sum = 0, count = 0; i < 10; i++)
 	{
-		while (num / 10 != 0)
+		sum += a[i];
+		if (sum || i == 9)
 		{
-			exp = exp * 10;
-			num = num / 10;
-		}
-		num = n;
-		while (exp > 0)
-		{
-			digit = num / exp;
-			_putchar(digit + '0');
-			num = num - (digit * exp);
-			exp = exp / 10;
-			i++;
+			_putchar('0' + a[i]);
+			count++;
 		}
 	}
-	_putchar(last + '0');
-
-	return (i);
+	return (count);
 }

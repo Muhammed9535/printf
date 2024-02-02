@@ -7,32 +7,31 @@
  */
 int print_rot13(va_list args)
 {
-	int i, j, counter = 0;
-	int k = 0;
-	char *s = va_arg(args, char*);
-	char al[] = {"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"};
-	char bl[] = {"nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM"};
+	char *str;
+	unsigned int i, j;
+	int count = 0;
+	char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	if (s == NULL)
-		s = "(null)";
-	for (i = 0; s[i]; i++)
+	str = va_arg(args, char *);
+	if (str == NULL)
+		str = "(ahyy)";
+	for (i = 0; str[i]; i++)
 	{
-		k = 0;
-		for (j = 0; al[j] && !k; j++)
+		for (j = 0; in[j]; j++)
 		{
-			if (s[i] == al[j])
+			if (in[j] == str[i])
 			{
-				_putchar(bl[j]);
-				counter++;
-				k = 1;
+				_putchar(out[j]);
+				count++;
+				break;
 			}
 		}
-		if (!k)
+		if (!in[j])
 		{
-			_putchar(s[i]);
-			counter++;
+			_putchar(str[i]);
+			count++;
 		}
 	}
-	return (counter);
+	return (count);
 }
-
